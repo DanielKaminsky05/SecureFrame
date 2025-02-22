@@ -1,19 +1,22 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './components/Navbar/Navbar.jsx'
+import {HashRouter as Router, Routes, Route} from 'react-router-dom'
+import { Home } from './Pages/home.jsx'
+import { Upload } from './Pages/upload.jsx'
+import { Decrypt } from './Pages/decrypt.jsx'
+import { Encrypt } from './Pages/encrypt.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <body>
-        <Navbar></Navbar>
-        
-      </body>      
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/upload" element={<Upload/>}/>
+        <Route path="/decrypt" element={<Decrypt/>}/>
+        <Route paht="/encrypt" element={<Encrypt/>}/>
+      </Routes>
+    </Router>
   )
 }
 

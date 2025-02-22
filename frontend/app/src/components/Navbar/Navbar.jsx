@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './Navbar.css';
+import { Link } from 'react-router-dom'
 
 
 
@@ -11,9 +12,9 @@ function Navbar() {
       <img src="/temp_logo.png" className="logo"></img>
       <div className="navbar-options">
         <div className="menu">
-          <button> Encryptor </button>
-          <button> Decryptor </button>
-          <button> Contact Us</button>
+          <Link to="/upload" className="nav-link"> Encryptor </Link>
+          <Link to="/decrypt" className="nav-link"> Decryptor </Link>
+          <Link to="/contactUs" className="nav-link"> Contact Us</Link>
         </div>
         <div className="button-cont">
           <button>Log in</button>

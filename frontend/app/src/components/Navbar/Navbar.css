@@ -24,6 +24,10 @@
     gap:2em;
 }
 
+.nav-link {
+    margin-top: 1em;
+}
+
 .button-cont {
     display: flex;
     flex-direction: row;
@@ -45,11 +49,12 @@ button {
     display: inline-block;
     padding: 1em;
     height: fit-content;
-}  
+}
 
 .logo {
     width: 5em;
     height: 5em;
     padding:0;
     margin-left: 3vw;
+    margin-right:2vw;
 }
