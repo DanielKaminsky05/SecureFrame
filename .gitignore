@@ -2,3 +2,7 @@
 resources/
 /models
 /output
+.DS_Store
+/__pycache__
+/utilities/__pycache__
+/temp
