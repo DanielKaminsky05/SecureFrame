@@ -8,6 +8,7 @@ import { Decrypt } from './Pages/decrypt.jsx'
 import { Encrypt } from './Pages/encrypt.jsx'
 import { Progress } from './Pages/progress.jsx'
 import Background from './components/background/background'
+import Demo from './Pages/demo'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/decrypt" element={<Decrypt />} />
             <Route path="/encrypt" element={<Encrypt />} />
             <Route path="/progress" element={<Progress />} />
+            <Route path="/demo" element={<Demo />} />
           </Routes>
         </div>
       </div>
