@@ -26,4 +26,8 @@ dist-ssr
 .utilites
 .temp
 .models
-.__pycache__
+temp
+venv
+utilities
+__pycache__
+models

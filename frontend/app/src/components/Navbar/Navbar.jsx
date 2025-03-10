@@ -14,7 +14,7 @@ function Navbar() {
       
       <div className="navbar-section nav-section">
         <Link to="/upload" className="nav-link">Encryptor</Link>
-        <Link to="/decrypt" className="nav-link">Decryptor</Link>
+        <Link to="/decryptUpload" className="nav-link">Decryptor</Link>
         <Link to="/demo" className="nav-link">Live Demo</Link>
       </div>
       
