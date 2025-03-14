@@ -6,6 +6,9 @@ from detect_objects import detect_objects
 import os
 
 from flask_cors import CORS
+
+from utilities.general_utilities import get_unique_track_ids, load_json_data
+from utilities.metadata_utilities import read_metadata
 app = Flask(__name__)
 CORS(app,resources={"/*": {"origins": "http://localhost:5173"}})
 
@@ -201,6 +204,25 @@ def decrypt():
     except Exception as e:
         import traceback
         traceback.print_exc()
+        return jsonify({
+            "success": False,
+            "message": str(e),
+            "debug_info": "See server console for full traceback"
+        }), 500
+
+@app.route('/ids/encrypt', methods = ['GET'])
+def getIds(): 
+    tracked_data = load_json_data('./output/tracked_objects.json')
+    data = get_unique_track_ids(tracked_data)
+    return jsonify(data)
+
+@app.route('/ids/decrypt', methods = ['GET'])
+def getIdsDecrypt(): 
+    try:
+        metadata = read_metadata("")
+        selected_ids = metadata["selected_ids"]
+        return jsonify(selected_ids)
+    except Exception as e:
         return jsonify({
             "success": False,
             "message": str(e),
