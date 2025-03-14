@@ -24,11 +24,35 @@
     flex-wrap: wrap;
     gap:5px;
     flex: 1;
-    max-width: 300px; /* Limits dropdown width */
+    max-width: 400px; /* Limits dropdown width */
     display: flex;
     align-items: center;
   }
   
 
   
-  
+  .next-button {
+    position: relative;
+    color: white;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 9999px;
+    padding: none;
+    width: 6.5vw;
+    height: 2.5vw;
+    font-size: 1rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    display: flex;         /* Enables flexbox */
+    justify-content: center; /* Centers text horizontally */
+    align-items: center;   /* Centers text vertically */
+    text-align: center;    /* Ensures text alignment */
+}
+
+/* Hover Effect */
+.next-button:hover {
+    background-color: rgba(162, 161, 161, 0.419);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}

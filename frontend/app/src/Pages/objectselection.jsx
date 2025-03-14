@@ -131,7 +131,7 @@ const ObjectSelection = () => {
               option: (base) => ({ ...base, color: "black" }),
             }}    
           />
-          <button onClick={handleSubmit}>Next</button>
+          <button className = "next-button" onClick={handleSubmit}>Next</button>
         </div>
       </div>
     </>
