@@ -60,7 +60,12 @@ const ObjectSelection = () => {
       const response = await axios.post("http://127.0.0.1:5000/encrypt", formData);
 
       if (response.data.success) {
-        navigate("/videooutput");
+        if (response.data.encryption_method == "AES"){
+          localStorage.setItem("key", response.data.key);
+          localStorage.setItem("nonce", response.data.nonce);
+          console.log(response.data)
+        }
+        navigate("/videooutput"); // Navigate to videooutput page
         
       } else {
         alert("Encryption failed: " + response.data.message);

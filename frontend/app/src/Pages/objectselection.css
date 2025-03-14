@@ -17,8 +17,8 @@ h1 {
   
   .video-container {
     flex: 3;
-    max-width: 0.5vw;
-    max-height: 0.5vw; /* Proper width */
+    width: 600px;
+    height: 500px; /* Proper width */
     border: solid purple 5px; /* Fix border */
   }
   
