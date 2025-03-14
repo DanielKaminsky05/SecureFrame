@@ -32,7 +32,7 @@ const VideoOutput = () => {
         <div className="content-wrapper">
             <div className="video-container">
                 <ReactPlayer 
-                    url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    url={videoUrl}
                     controls={true}
                     width="100%"
                     height="100%"
