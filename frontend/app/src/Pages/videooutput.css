@@ -15,3 +15,7 @@ h1 {
     max-height: 600px;
     border: solid purple 5px;
 }
+
+video {
+    transform: scaleX(1);
+}

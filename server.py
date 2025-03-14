@@ -6,6 +6,9 @@ from detect_objects import detect_objects
 import os
 
 from flask_cors import CORS
+
+from utilities.general_utilities import get_unique_track_ids, load_json_data
+from utilities.metadata_utilities import read_metadata
 app = Flask(__name__)
 CORS(app,resources={"/*": {"origins": "http://localhost:5173"}})
 
@@ -61,25 +64,18 @@ def encrypt():
     try:
         print("DEBUG: /encrypt endpoint called.")  # Debug line
         
-        # Retrieve file from FormData
-        video_file = request.files.get("video")
-        if video_file:
-            print(f"DEBUG: Received file: {video_file.filename}")
-        else:
-            print("DEBUG: No file found in request.files['video']")
-        
         # Retrieve other fields from request.form
         selected_ids_str = request.form.get("selected_ids")
         encryption_method = request.form.get("method")
         
         print(f"DEBUG: selected_ids_str = {selected_ids_str}, method = {encryption_method}")
         
-        if not video_file:
-            return jsonify({
-                "success": False,
-                "message": "No video file provided",
-                "debug_info": "File missing in request.files"
-            }), 400
+        # if not video_file:
+        #     return jsonify({
+        #         "success": False,
+        #         "message": "No video file provided",
+        #         "debug_info": "File missing in request.files"
+        #     }), 400
 
         if not selected_ids_str:
             return jsonify({
@@ -98,11 +94,13 @@ def encrypt():
                 "debug_info": str(e)
             }), 400
 
-        # Save file to a temporary directory
-        video_filename = video_file.filename
-        saved_video_path = os.path.join("temp", video_filename)
-        print(f"DEBUG: Saving uploaded file to {saved_video_path}")
-        video_file.save(saved_video_path)
+        # # Save file to a temporary directory
+        # video_filename = video_file.filename
+        # saved_video_path = os.path.join("temp", video_filename)
+        # print(f"DEBUG: Saving uploaded file to {saved_video_path}")
+        # video_file.save(saved_video_path)
+
+        saved_video_path = "./output/tracked_video.mp4"
 
         # Call encrypt_video
         print(f"DEBUG: Calling encrypt_video with {saved_video_path}, {selected_ids}, method={encryption_method}")
@@ -201,6 +199,39 @@ def decrypt():
     except Exception as e:
         import traceback
         traceback.print_exc()
+        return jsonify({
+            "success": False,
+            "message": str(e),
+            "debug_info": "See server console for full traceback"
+        }), 500
+
+@app.route('/ids/encrypt', methods = ['GET'])
+def getIds(): 
+    tracked_data = load_json_data('./output/tracked_objects.json')
+    data = get_unique_track_ids(tracked_data)
+    return jsonify(data)
+
+@app.route('/ids/decrypt', methods = ['GET'])
+def getIdsDecrypt(): 
+    try:
+        metadata = read_metadata("")
+        selected_ids = metadata["selected_ids"]
+        return jsonify(selected_ids)
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "message": str(e),
+            "debug_info": "See server console for full traceback"
+        }), 500
+
+ 
+@app.route('/method', methods = ['GET']) 
+def getMethod(): 
+    try:
+        metadata = read_metadata("")
+        method = metadata['method']
+        return jsonify(method)
+    except Exception as e:
         return jsonify({
             "success": False,
             "message": str(e),
