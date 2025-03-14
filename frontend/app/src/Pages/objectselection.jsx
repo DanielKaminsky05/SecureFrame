@@ -29,7 +29,6 @@ const ObjectSelection = () => {
           label: `ID ${id}`
         }));
         setOptions(formattedOptions); //  Store options in state
-        console.log(options);
     }
     catch (error) {
     console.error("Error fetching available IDs:", error);
@@ -44,28 +43,6 @@ const ObjectSelection = () => {
     console.log("here")
     //put the available id's api call in here as well
   }, []);
-
-
-  /*const options = [
-    { value: "1", label: "ID 1" },
-    { value: "2", label: "ID 2" },
-    { value: "3", label: "ID 3" },
-    { value: "4", label: "ID 4" },
-    { value: "5", label: "ID 5" },
-    { value: "6", label: "ID 6" },
-    { value: "7", label: "ID 7" },
-    { value: "8", label: "ID 8" },
-    { value: "9", label: "ID 9" },
-    { value: "10", label: "ID 10" },
-    { value: "11", label: "ID 11" },
-    { value: "12", label: "ID 12" },
-    { value: "13", label: "ID 13" },
-    { value: "14", label: "ID 14" },
-    { value: "15", label: "ID 15" },
-    { value: "16", label: "ID 16" },
-  ];
-  */
-  
 
   const handleSubmit = async () => {
 
@@ -109,6 +86,8 @@ const ObjectSelection = () => {
             className="video"
             url={videoUrl}
             controls
+            height="100%"
+            width="100%"
           />
         </div>
 
@@ -136,7 +115,3 @@ const ObjectSelection = () => {
 };
 
 export default ObjectSelection;
-
-
-
-

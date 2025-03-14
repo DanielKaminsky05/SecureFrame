@@ -8,6 +8,7 @@ from utilities.general_utilities import (
     validate_coordinates,
 )
 from utilities.video_utilities import (
+    convert_to_mp4,
     open_video,
     get_frame_size,
     get_fps,
@@ -84,7 +85,9 @@ def encrypt_video(input_video_path, encrypted_video_path, tracked_data_path, sel
             tracked_data,
             method,
         )
-
+        
+        convert_to_mp4(encrypted_video_path, "./frontend/app/public/videos/encrypted_video.mp4")
+ 
         response = {
             "success": True,
             "message": "Encryption completed successfully.",

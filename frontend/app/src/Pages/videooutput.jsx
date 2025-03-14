@@ -10,7 +10,7 @@ const VideoOutput = () => {
         <h1>Video Output</h1>
         <div className="video-container">
             <ReactPlayer 
-                url={videoUrl||"youtu.be/8DlU58Yi3Ww?si=aW31QL_ZAb4zRYoF"}
+                url={videoUrl||"/videos/encrypted_video.mp4"}
                 controls 
                 width="100%"
                 height="550px"
