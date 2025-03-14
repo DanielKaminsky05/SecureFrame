@@ -8,39 +8,23 @@ export function Progress() {
     const [isComplete, setIsComplete] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const navigate = useNavigate();
-
-
-    //Api call to get the encrypted frames
-    const getEncryptedFrames = async () => {
-        try {
-            const response = await axios.get("http://127.0.0.1:5000/encrypt", ) 
-            if (response.data.success) {
-                setIsComplete(true);
-            }
-        }
-        catch (error) {
-            console.error("Error fetching encrypted frames:", error);
-        }
-    }
-
-
     
     // Add animation for the progress bar
     useEffect(() => {
         let currentProgress = 0;
         const interval = setInterval(() => {
-            if (!isPaused && currentProgress < 4) {
+            if (!isPaused && currentProgress < 3) {
                 currentProgress += 1;
                 setProgress(currentProgress);
                 
                 // Check if encryption is complete
-                if (currentProgress === 5) {
+                if (currentProgress === 3) {
                     setIsComplete(true);
                 }
-            } else if (currentProgress >= 5) {
+            } else if (currentProgress >= 3) {
                 clearInterval(interval);
             }
-        }, 1500);
+        }, 10000);
         
         return () => clearInterval(interval);
     }, [isPaused]);
@@ -52,7 +36,7 @@ export function Progress() {
     
     const handleNext = () => {
         if (isComplete) {
-            navigate('/videooutput'); // Navigate to encryptor page when complete
+            navigate('/encryptor'); // Navigate to encryptor page when complete
         }
     };
     
@@ -62,12 +46,12 @@ export function Progress() {
     
     return (
         <div className="progress-container">
-            <h1 className="progress-title">{progress}/5 Objects Encrypted</h1>
+            <h1 className="progress-title">{progress}/3 Objects Encrypted</h1>
             
             <div className="progress-bar-container">
                 <div 
                     className="progress-bar" 
-                    style={{width: `${(progress/5) * 100}%`}}
+                    style={{width: `${(progress/3) * 100}%`}}
                 >
                     <div className="progress-indicator"></div>
                 </div>
