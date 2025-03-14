@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import ReactPlayer from "react-player";
 import "./videooutput.css";
 
@@ -6,6 +6,13 @@ const VideoOutput = () => {
     const [videoUrl, setVideoUrl] = useState("/videos/encrypted_video.mp4");
     const [showPopup, setShowPopup] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
+    const [key, setKey] = useState();
+    const [nonce, setNonce] = useState();
+
+    useEffect(() => {
+        setKey(localStorage.getItem("key") || "No key found");
+        setNonce(localStorage.getItem("nonce") || "No nonce found");
+    }, []);
 
     const handleDecryptionKeyClick = () => {
         setShowPopup(true);
@@ -106,8 +113,8 @@ const VideoOutput = () => {
                         Decryption Key Package
                     </h3>
                     <div className="key-info">
-                        <p><strong>Key:</strong> 8f4e7d1c2b9a5h3g</p>
-                        <p><strong>Nonce:</strong> 3a2b1c4d</p>
+                        <p><strong>Key:</strong> {key}</p>
+                        <p><strong>Nonce:</strong> {nonce}</p>
                     </div>
                 </div>
             </div>
