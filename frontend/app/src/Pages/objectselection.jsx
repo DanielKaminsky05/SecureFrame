@@ -51,6 +51,8 @@ const ObjectSelection = () => {
       return;
     }
 
+    navigate("/progress");
+
     try {
       const formData = new FormData();
       formData.append("selected_ids", JSON.stringify(selectedOptions.map(option => option.value)));
@@ -65,7 +67,7 @@ const ObjectSelection = () => {
           localStorage.setItem("nonce", response.data.nonce);
           console.log(response.data)
         }
-        navigate("/videooutput"); // Navigate to videooutput page
+         // Navigate to videooutput page
         
       } else {
         alert("Encryption failed: " + response.data.message);

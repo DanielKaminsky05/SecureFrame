@@ -36,7 +36,7 @@ export function Progress() {
     
     const handleNext = () => {
         if (isComplete) {
-            navigate('/encryptor'); // Navigate to encryptor page when complete
+            navigate('/videooutput'); // Navigate to encryptor page when complete
         }
     };
     

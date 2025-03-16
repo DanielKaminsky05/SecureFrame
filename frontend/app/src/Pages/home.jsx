@@ -12,7 +12,7 @@ export function Home() {
           <img src={logo} alt="AES-256 Object Vault" className="main-logo" />
         </div>
         
-        <p className="subtitle">AES-256 Encryption ✦ Military Grade Security ✦ Quantum Safe</p>
+        <p className="subtitle">AES-256 Encryption ✦ Military Grade Security</p>
         
         {/* <button className="cta-button">
           Start Encrypting Now
