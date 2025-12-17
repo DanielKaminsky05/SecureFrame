@@ -1,135 +1,139 @@
-# 🏆 SecureFrame: Gold Medal Winner at TTE 🏆
+# SecureFrame
 
-**SecureFrame is an innovative video security application that allows for the selective encryption of objects within a video stream. Harnessing the power of advanced object detection, SecureFrame provides a robust solution for privacy, security, and content redaction.**
+
+Intelligent Object Detection & Selective Video Encryption
 
 ![SecureFrame Demo](./docs/SecureframeDemo.gif)
 
----
+## Overview
 
-## 🌟 Key Features
+**SecureFrame** is an advanced privacy protection tool that leverages computer vision to automatically detect objects in video footage and allows users to selectively encrypt specific entities. 
 
--   **Intelligent Object Detection:** Automatically detects and tracks multiple objects in any given video file using the state-of-the-art YOLOv8 model.
--   **Selective Encryption:** Users can select which specific tracked objects they wish to encrypt.
--   **Multiple Encryption Ciphers:** Supports both **AES** and **XOR** encryption methods for flexible security.
--   **Seamless Decryption:** Easily decrypt videos with the correct key (for AES) or automatically (for XOR).
--   **Web-Based Interface:** A modern and user-friendly interface built with React for a smooth user experience.
--   **Python-Powered Backend:** A robust Flask backend handles all the heavy lifting of video processing.
+🥇 **1st Place in Cybersecurity at the Toronto Tech Expo**, SecureFrame addresses the growing need for privacy in video data by combining the power of **YOLOv8** for object tracking with robust **AES** encryption standards. Whether for redaction, security, or privacy compliance, SecureFrame ensures that sensitive visual information is protected.
 
----
+## Key Features
 
-## ⚙️ How It Works
-
-The SecureFrame workflow is divided into four main stages:
-
-### 1. Detect
-The user uploads a video. The backend uses a YOLOv8 model to perform object detection and tracking, generating a new video with bounding boxes and a JSON file with tracking data.
-
-`User Video -> YOLOv8 Model -> Tracked Video + tracking_data.json`
-
-### 2. Select
-The frontend displays the unique object IDs that were tracked. The user selects which objects they wish to redact or encrypt.
-
-`User Selects IDs [1, 5, 10] from UI
-
-### 3. Encrypt
-The backend processes the video frame-by-frame. For the user-selected object IDs, it encrypts the corresponding bounding box regions using the chosen cipher (AES or XOR). Metadata required for decryption is saved.
-
-`Tracked Video + Selected IDs -> Encrypted Video + metadata.json`
-
-### 4. Decrypt
-The user uploads the encrypted video. If AES was used, they provide the key. The backend reads the saved metadata and decrypts the specified regions, restoring the original content.
-
-`Encrypted Video + metadata.json -> Decrypted Video`
+*   **Granular & Reversible Privacy:** SecureFrame offers unique selective encryption, allowing specific, AI-detected objects within a video to be reversibly protected. This enables secure video distribution where sensitive data can be unlocked by authorized personnel.
+*   **Novel Codec-Level Security:** Our innovative approach directly manipulates video codec data at the frame level to apply robust, reversible encryption. This method significantly advances beyond traditional redaction or blurring techniques.
+*   **AI-Powered Precision:** Leveraging **YOLOv8**, the system autonomously identifies and tracks dynamic objects, enabling users to *manually select and target* specific moving entities (e.g., encrypt all detected persons or vehicles) for precise security application.
+*   **Intuitive Control:** A user-friendly interface simplifies the complex process of AI detection and cryptographic selection, making advanced video privacy accessible.
 
 ---
 
-## 💻 Tech Stack
+## Architecture
 
--   **Frontend:** React, Vite, CSS
--   **Backend:** Python, Flask
--   **Object Detection:** Ultralytics YOLOv8
--   **Video Processing:** OpenCV
+The SecureFrame workflow operates in four distinct stages:
+
+```mermaid
+graph LR
+    A[User Upload] -->|Input Video| B(Backend: Detection)
+    B -->|YOLOv8 Tracking| C{Frontend: Selection}
+    C -->|Select Object IDs| D(Backend: Encryption)
+    D -->|AES/XOR| E[Encrypted Video]
+    E -->|Upload + Key| F(Backend: Decryption)
+    F -->|Restore| G[Decrypted Video]
+```
+
+1.  **Detect:** The backend processes the uploaded video, tracking objects frame-by-frame.
+2.  **Select:** Users view unique object IDs in the UI and choose which ones to secure.
+3.  **Encrypt:** Selected regions are encrypted, and metadata is generated.
+4.  **Decrypt:** Authorized users can reverse the process to view the original content.
 
 ---
 
-## 🚀 Getting Started
+## Tech Stack
+
+| Category            | Technologies                               |
+| :------------------ | :----------------------------------------- |
+| **Object Detection**| Ultralytics YOLOv8, PyTorch                |
+| **Computer Vision** | OpenCV                                     |
+| **Cryptography**    | PyCryptodome (AES & XOR)                   |
+| **Backend**         | Python, Flask                              |
+| **Frontend**        | React, Vite                                |
+
+---
+
+## API Reference
+
+The Flask backend exposes the following endpoints:
+
+| Endpoint | Method | Description |
+| :--- | :--- | :--- |
+| `/detect` | `POST` | Upload video and run YOLOv8 detection. |
+| `/encrypt` | `POST` | Encrypt selected object IDs in the processed video. |
+| `/decrypt` | `POST` | Decrypt a video using a provided key/nonce. |
+| `/ids/encrypt` | `GET` | Get list of unique tracked IDs from detection. |
+| `/ids/decrypt` | `GET` | Get list of encrypted IDs from metadata. |
+| `/method` | `GET` | Retrieve the encryption method used for the current video. |
+
+---
+
+## Installation
 
 ### Prerequisites
+*   **Python 3.11+**
+*   **Node.js** and **npm**
 
--   Python 3.11+
--   Node.js and npm
-
-### Installation
+### Backend Setup
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/yourusername/SecureFrame.git
     cd SecureFrame
     ```
 
-2.  **Setup the Python Backend:**
+2.  **Create a virtual environment:**
     ```bash
-    # Create and activate a virtual environment
     python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    
+    # Windows
+    venv\Scripts\activate
+    
+    # macOS/Linux
+    source venv/bin/activate
+    ```
 
-    # Install Python dependencies
+3.  **Install Python dependencies:**
+    ```bash
     pip install -r requirements.txt
     ```
 
-3.  **Setup the React Frontend:**
-    ```bash
-    # Navigate to the frontend directory
-    cd frontend/app
+### Frontend Setup
 
-    # Install Node.js dependencies
+1.  **Navigate to the frontend directory:**
+    ```bash
+    cd frontend/app
+    ```
+
+2.  **Install Node dependencies:**
+    ```bash
     npm install
     ```
 
-### Running the Application
-
-1.  **Start the Flask Backend:**
-    From the root project directory, run:
-    ```bash
-    python server.py
-    ```
-    The server will start on `http://127.0.0.1:5000`.
-
-2.  **Start the React Frontend:**
-    In a separate terminal, from the `frontend/app` directory, run:
-    ```bash
-    npm run dev
-    ```
-    The frontend development server will start, and you can access the application in your browser, usually at `http://localhost:5173`.
-
 ---
 
-## 📁 Project Structure
+## Usage
 
+### 1. Start the Backend Server
+From the root `SecureFrame` directory (ensure your venv is active):
+```bash
+python server.py
 ```
-SecureFrame/
-├── frontend/app/         # React Frontend Source Code
-├── input/                # Default folder for input videos
-├── output/               # Default folder for processed videos and metadata
-├── utilities/            # Helper scripts for video, metadata, etc.
-├── server.py             # Main Flask application
-├── detect_objects.py     # Object detection and tracking logic
-├── encrypt_video.py      # Video encryption logic
-├── decrypt_objects.py    # Video decryption logic
-└── requirements.txt      # Python dependencies
+*The server will run on `http://127.0.0.1:5000`.*
+
+### 2. Start the Frontend Application
+Open a new terminal, navigate to `frontend/app`, and run:
+```bash
+npm run dev
 ```
+*The application will launch at `http://localhost:5173` (or similar).*
+
+### 3. Workflow
+1.  **Upload:** Go to the "Detect" page and upload a video file.
+2.  **Process:** Wait for the AI detection to complete.
+3.  **Select:** Choose the ID numbers of the objects you want to hide.
+4.  **Encrypt:** Select your method (AES/XOR) and encrypt. Download the result.
+5.  **Decrypt:** Go to the "Decrypt" page, upload the encrypted video (and key if AES), and view the restored footage.
 
 ---
 
-## 🔮 Future Improvements
-
--   [ ] Support for live video streams from webcams or IP cameras.
--   [ ] Integration with more encryption standards.
--   [ ] Cloud-based processing and storage.
--   [ ] User authentication and multi-user support.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
