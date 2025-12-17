@@ -15,7 +15,7 @@ Intelligent Object Detection & Selective Video Encryption
 
 *   **Granular & Reversible Privacy:** SecureFrame offers unique selective encryption, allowing specific, AI-detected objects within a video to be reversibly protected. This enables secure video distribution where sensitive data can be unlocked by authorized personnel.
 *   **Novel Codec-Level Security:** Our innovative approach directly manipulates video codec data at the frame level to apply robust, reversible encryption. This method significantly advances beyond traditional redaction or blurring techniques.
-*   **AI-Powered Precision:** Leveraging **YOLOv8**, the system autonomously identifies and tracks dynamic objects, enabling users to *manually select and target* specific moving entities (e.g., encrypt all detected persons or vehicles) for precise security application.
+*   **AI-Powered Precision:** Leveraging **YOLOv8**, the system autonomously identifies and tracks dynamic objects, enabling users to *target* specific moving entities (e.g., encrypt all detected persons or vehicles) for precise security application.
 *   **Intuitive Control:** A user-friendly interface simplifies the complex process of AI detection and cryptographic selection, making advanced video privacy accessible.
 
 ---
