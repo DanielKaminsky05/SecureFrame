@@ -2,7 +2,7 @@
 
 **SecureFrame is an innovative video security application that allows for the selective encryption of objects within a video stream. Harnessing the power of advanced object detection, SecureFrame provides a robust solution for privacy, security, and content redaction.**
 
-![SecureFrame Demo](./docs/SecureframeDemo.mp4)
+![SecureFrame Demo](./docs/SecureframeDemo.gif)
 
 ---
 
