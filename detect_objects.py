@@ -6,10 +6,6 @@ from utilities.load_model import load_model
 from utilities.video_utilities import convert_to_mp4, open_video, get_frame_size, get_fps, get_frame_count, get_video_writer
 from utilities.general_utilities import log_progress
 
-
-
-
-
 def detect_objects(model_path, input_video_path, output_video_path, output_json_path):
     try:
         model, device = load_model(model_path)

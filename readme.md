@@ -1,80 +1,135 @@
-# SecureFrame Application
+# 🏆 SecureFrame: Gold Medal Winner at TTE 🏆
 
-This project is built to run on **Python 3.11.5**.
+**SecureFrame is an innovative video security application that allows for the selective encryption of objects within a video stream. Harnessing the power of advanced object detection, SecureFrame provides a robust solution for privacy, security, and content redaction.**
 
-## Requirements
-- **Python**: Version 3.11.5
-- **Virtual Environment**: Recommended to isolate dependencies
+![SecureFrame Demo](https//placehold.co/800x400.gif?text=SecureFrame+In+Action)
 
-## Setup Instructions
+---
 
-### 1. Create a Virtual Environment
-Open a terminal in the project directory and run:
-```sh
-python3.11 -m venv venv
+## 🌟 Key Features
+
+-   **Intelligent Object Detection:** Automatically detects and tracks multiple objects in any given video file using the state-of-the-art YOLOv8 model.
+-   **Selective Encryption:** Users can select which specific tracked objects they wish to encrypt.
+-   **Multiple Encryption Ciphers:** Supports both **AES** and **XOR** encryption methods for flexible security.
+-   **Seamless Decryption:** Easily decrypt videos with the correct key (for AES) or automatically (for XOR).
+-   **Web-Based Interface:** A modern and user-friendly interface built with React for a smooth user experience.
+-   **Python-Powered Backend:** A robust Flask backend handles all the heavy lifting of video processing.
+
+---
+
+## ⚙️ How It Works
+
+The SecureFrame workflow is divided into four main stages:
+
+### 1. Detect
+The user uploads a video. The backend uses a YOLOv8 model to perform object detection and tracking, generating a new video with bounding boxes and a JSON file with tracking data.
+
+`User Video -> YOLOv8 Model -> Tracked Video + tracking_data.json`
+
+### 2. Select
+The frontend displays the unique object IDs that were tracked. The user selects which objects they wish to redact or encrypt.
+
+`User Selects IDs [1, 5, 10] from UI
+
+### 3. Encrypt
+The backend processes the video frame-by-frame. For the user-selected object IDs, it encrypts the corresponding bounding box regions using the chosen cipher (AES or XOR). Metadata required for decryption is saved.
+
+`Tracked Video + Selected IDs -> Encrypted Video + metadata.json`
+
+### 4. Decrypt
+The user uploads the encrypted video. If AES was used, they provide the key. The backend reads the saved metadata and decrypts the specified regions, restoring the original content.
+
+`Encrypted Video + metadata.json -> Decrypted Video`
+
+---
+
+## 💻 Tech Stack
+
+-   **Frontend:** React, Vite, CSS
+-   **Backend:** Python, Flask
+-   **Object Detection:** Ultralytics YOLOv8
+-   **Video Processing:** OpenCV
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+-   Python 3.11+
+-   Node.js and npm
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd SecureFrame
+    ```
+
+2.  **Setup the Python Backend:**
+    ```bash
+    # Create and activate a virtual environment
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+
+    # Install Python dependencies
+    pip install -r requirements.txt
+    ```
+
+3.  **Setup the React Frontend:**
+    ```bash
+    # Navigate to the frontend directory
+    cd frontend/app
+
+    # Install Node.js dependencies
+    npm install
+    ```
+
+### Running the Application
+
+1.  **Start the Flask Backend:**
+    From the root project directory, run:
+    ```bash
+    python server.py
+    ```
+    The server will start on `http://127.0.0.1:5000`.
+
+2.  **Start the React Frontend:**
+    In a separate terminal, from the `frontend/app` directory, run:
+    ```bash
+    npm run dev
+    ```
+    The frontend development server will start, and you can access the application in your browser, usually at `http://localhost:5173`.
+
+---
+
+## 📁 Project Structure
+
+```
+SecureFrame/
+├── frontend/app/         # React Frontend Source Code
+├── input/                # Default folder for input videos
+├── output/               # Default folder for processed videos and metadata
+├── utilities/            # Helper scripts for video, metadata, etc.
+├── server.py             # Main Flask application
+├── detect_objects.py     # Object detection and tracking logic
+├── encrypt_video.py      # Video encryption logic
+├── decrypt_objects.py    # Video decryption logic
+└── requirements.txt      # Python dependencies
 ```
 
-### 2. Activate the Virtual Environment
-- **On macOS/Linux:**
-  ```sh
-  source venv/bin/activate
-  ```
-- **On Windows (Command Prompt):**
-  ```sh
-  venv\Scripts\activate
-  ```
-- **On Windows (PowerShell):**
-  ```sh
-  .\venv\Scripts\Activate.ps1
-  ```
+---
 
-### 3. Install Dependencies
-Run:
-```sh
-pip install -r requirements.txt
-```
+## 🔮 Future Improvements
 
-### 4. Configure Your Project
-Ensure the folder structure is correct and that the model, sample input video, etc., are in their respective folders.
+-   [ ] Support for live video streams from webcams or IP cameras.
+-   [ ] Integration with more encryption standards.
+-   [ ] Cloud-based processing and storage.
+-   [ ] User authentication and multi-user support.
 
-### 5. Run the Application
-Start the Flask server by running:
-```sh
-python server.py
-```
-You should see output similar to:
-```
-* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-```
+---
 
-### 6. Open the Frontend Interface
-Open your browser and navigate to:
-```
-http://127.0.0.1:5000/
-```
-From here, you can use the interface to run detection, encryption, and decryption.
+## 📄 License
 
-## Usage Instructions
-
-### Detection
-- Use the file picker under the **“Detection”** section to select a video file and click **Start Detection**.
-- This will process the video and generate tracking metadata.
-
-### Encryption
-- In the **“Video Encryption”** section, select a video file using the file picker.
-- Enter the object IDs (comma-separated) and choose an encryption method (**AES, XOR, etc.**).
-- Click **Start Encryption**.
-- If using **AES**, the system will display the **AES key and nonce**—please save these securely for decryption.
-
-### Decryption
-- In the **“Video Decryption”** section, select the encrypted video file using the file picker.
-- If the encryption method is **AES**, enter the key and nonce.
-- Click **Start Decryption**.
-- For other methods (e.g., **XOR**), the key and nonce fields can be left blank.
-
-## Debugging
-- Check the terminal (Flask console) for debug messages.
-- Use the browser’s Developer Tools (**Console and Network** tabs) to inspect requests and responses.
-
-## Shutting Down
-To stop the application, press **CTRL+C** in the terminal where the Flask server is running.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
