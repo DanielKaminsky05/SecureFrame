@@ -1,5 +1,4 @@
-# SecureFrame
-
+# SecureFrame ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white) ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![YOLOv8](https://img.shields.io/badge/YOLOv8-000000?style=for-the-badge&logo=ultralytics&logoColor=white)
 
 Intelligent Object Detection & Selective Video Encryption
 
@@ -65,6 +64,98 @@ The Flask backend exposes the following endpoints:
 | `/ids/encrypt` | `GET` | Get list of unique tracked IDs from detection. |
 | `/ids/decrypt` | `GET` | Get list of encrypted IDs from metadata. |
 | `/method` | `GET` | Retrieve the encryption method used for the current video. |
+
+---
+
+## File Tree
+
+```
+├───.gitignore
+├───decrypt_objects.py
+├───detect_objects.py
+├───encrypt_video.py
+├───package-lock.json
+├───package.json
+├───readme.md
+├───requirements.txt
+├───server.py
+├───.git/
+├───docs/
+│   └───SecureframeDemo.gif
+├───frontend/
+│   └───app/
+│       ├───.gitignore
+│       ├───index.html
+│       ├───package-lock.json
+│       ├───package.json
+│       ├───vite.config.js
+│       ├───public/
+│       │   ├───output alias
+│       │   └───temp_logo.png
+│       └───src/
+│           ├───App.css
+│           ├───App.jsx
+│           ├───index.css
+│           ├───assets/
+│           │   ├───alert.png
+│           │   ├───Background Sample.svg
+│           │   ├───car.png
+│           │   ├───ECUREFRAME.svg
+│           │   ├───homepagepic.png
+│           │   ├───logo.svg
+│           │   ├───minilogo.svg
+│           │   ├───person.png
+│           │   ├───temp_logo.png
+│           │   ├───tracked_video.mp4
+│           │   └───Visual.svg
+│           ├───components/
+│           │   ├───background/
+│           │   │   ├───Background Sample.svg
+│           │   │   ├───background.css
+│           │   │   └───background.jsx
+│           │   ├───dragdrop/
+│           │   │   ├───dragdrop.css
+│           │   │   └───DragDropFiles.jsx
+│           │   ├───Navbar/
+│           │   │   ├───logo.svg
+│           │   │   ├───Navbar.css
+│           │   │   └───Navbar.jsx
+│           │   ├───textbox-decrypt/
+│           │   │   ├───TextboxDecrypt.css
+│           │   │   └───TextboxDecrypt.jsx
+│           │   └───textbox-encrypt/
+│           │       ├───Textbox.css
+│           │       └───Textbox.jsx
+│           └───Pages/
+│               ├───decrypt.jsx
+│               ├───decryptUpload.jsx
+│               ├───demo.css
+│               ├───demo.jsx
+│               ├───encrypt.jsx
+│               ├───home.css
+│               ├───home.jsx
+│               ├───objectselection.css
+│               ├───objectselection.jsx
+│               ├───progress.css
+│               ├───progress.jsx
+│               ├───upload.css
+│               ├───upload.jsx
+│               ├───videooutput.css
+│               └───videooutput.jsx
+├───input/
+│   └───sample_video.mp4
+├───live_demo/
+│   ├───index.html
+│   ├───live_demo.py
+│   ├───script.js
+│   └───webcam_demo_utilities.py
+└───utilities/
+    ├───general_utilities.py
+    ├───load_model.py
+    ├───metadata_utilities.py
+    ├───video_utilities.py
+    └───webcam_demo_utilities.py
+```
 
 ---
 
