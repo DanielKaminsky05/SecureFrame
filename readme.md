@@ -73,18 +73,18 @@ The Flask backend exposes the following endpoints:
 
 ```
 ├───.gitignore
-├───decrypt_objects.py
-├───detect_objects.py
-├───encrypt_video.py
+├───decrypt_objects.py       # Script to handle video decryption based on metadata
+├───detect_objects.py        # Runs YOLOv8 object detection on uploaded videos
+├───encrypt_video.py         # Script for selective encryption of video frames
 ├───package-lock.json
 ├───package.json
-├───readme.md
-├───requirements.txt
-├───server.py
+├───readme.md                # Project documentation
+├───requirements.txt         # Python dependencies for the backend
+├───server.py                # Main Flask backend server
 ├───.git/
 ├───docs/
 │   └───SecureframeDemo.gif
-├───frontend/
+├───frontend/                # React frontend application
 │   └───app/
 │       ├───.gitignore
 │       ├───index.html
@@ -92,70 +92,33 @@ The Flask backend exposes the following endpoints:
 │       ├───package.json
 │       ├───vite.config.js
 │       ├───public/
-│       │   ├───output alias
-│       │   └───temp_logo.png
 │       └───src/
-│           ├───App.css
-│           ├───App.jsx
+│           ├───App.jsx      # Main React component with routing
 │           ├───index.css
 │           ├───assets/
-│           │   ├───alert.png
-│           │   ├───Background Sample.svg
-│           │   ├───car.png
-│           │   ├───ECUREFRAME.svg
-│           │   ├───homepagepic.png
-│           │   ├───logo.svg
-│           │   ├───minilogo.svg
-│           │   ├───person.png
-│           │   ├───temp_logo.png
-│           │   ├───tracked_video.mp4
-│           │   └───Visual.svg
-│           ├───components/
-│           │   ├───background/
-│           │   │   ├───Background Sample.svg
-│           │   │   ├───background.css
-│           │   │   └───background.jsx
-│           │   ├───dragdrop/
-│           │   │   ├───dragdrop.css
-│           │   │   └───DragDropFiles.jsx
-│           │   ├───Navbar/
-│           │   │   ├───logo.svg
-│           │   │   ├───Navbar.css
-│           │   │   └───Navbar.jsx
-│           │   ├───textbox-decrypt/
-│           │   │   ├───TextboxDecrypt.css
-│           │   │   └───TextboxDecrypt.jsx
-│           │   └───textbox-encrypt/
-│           │       ├───Textbox.css
-│           │       └───Textbox.jsx
-│           └───Pages/
+│           ├───components/  # Reusable UI components
+│           └───Pages/       # Application pages
 │               ├───decrypt.jsx
 │               ├───decryptUpload.jsx
-│               ├───demo.css
 │               ├───demo.jsx
 │               ├───encrypt.jsx
-│               ├───home.css
 │               ├───home.jsx
-│               ├───objectselection.css
 │               ├───objectselection.jsx
-│               ├───progress.css
 │               ├───progress.jsx
-│               ├───upload.css
 │               ├───upload.jsx
-│               ├───videooutput.css
 │               └───videooutput.jsx
-├───input/
+├───input/                   # Default folder for input videos
 │   └───sample_video.mp4
-├───live_demo/
+├───live_demo/               # Files for the live webcam demo
 │   ├───index.html
 │   ├───live_demo.py
 │   ├───script.js
 │   └───webcam_demo_utilities.py
-└───utilities/
+└───utilities/               # Helper scripts for backend tasks
     ├───general_utilities.py
-    ├───load_model.py
-    ├───metadata_utilities.py
-    ├───video_utilities.py
+    ├───load_model.py        # Handles loading the YOLOv8 model
+    ├───metadata_utilities.py# Manages metadata for encrypted videos
+    ├───video_utilities.py   # Functions for video manipulation (read/write)
     └───webcam_demo_utilities.py
 ```
 
